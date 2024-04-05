@@ -1,6 +1,5 @@
-package com.example.project.api.dto;
+package com.example.project.pharmacy.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -10,14 +9,11 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class DocumentDto {
+public class PharmacyDto { // redis 에서 사용하기 위한 dto
 
-  @JsonProperty("address_name")
-  private String addressName;
-
-  @JsonProperty("y")
+  private Long id;
+  private String pharmacyName;
+  private String pharmacyAddress;
   private double latitude;
-
-  @JsonProperty("x")
   private double longitude;
 }
