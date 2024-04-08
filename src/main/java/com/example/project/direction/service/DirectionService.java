@@ -2,11 +2,14 @@ package com.example.project.direction.service;
 
 import com.example.project.api.dto.DocumentDto;
 import com.example.project.direction.entity.Direction;
+import com.example.project.direction.repository.DirectionRepository;
 import com.example.project.pharmacy.dto.PharmacyDto;
 import com.example.project.pharmacy.service.PharmacySearchService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -23,6 +26,14 @@ public class DirectionService {
   private static final double RADIUS_KM = 10.0; // 반경 10km 이내 약국만 추천
 
   private final PharmacySearchService pharmacySearchService;
+  private final DirectionRepository directionRepository;
+
+  @Transactional
+  public List<Direction> saveAll(List<Direction> directionList) {
+    if (CollectionUtils.isEmpty(directionList)) return Collections.emptyList();
+
+    return directionRepository.saveAll(directionList);
+  }
 
   /**
    * 1. 약국 데이터 조회
