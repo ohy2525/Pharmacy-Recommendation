@@ -32,7 +32,10 @@ public class PharmacyRecommendationService {
 
     DocumentDto documentDto = kakaoApiResponseDto.getDocumentList().get(0);
 
+    // 공공기관 데이터
     List<Direction> directionList = directionService.buildDirectionList(documentDto);
+    //kakao api 사용
+    //List<Direction> directionList = directionService.buildDirectionListByCategoryApi(documentDto);
 
     directionService.saveAll(directionList);
   }
